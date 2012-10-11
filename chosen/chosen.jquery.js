@@ -840,10 +840,9 @@ Copyright (c) 2011 by Harvest
           if (option.group) {
             this.winnow_option_group(option);
           } else if (!(this.is_multiple && option.selected)) {
-            found = this.winnow_search_match(this.regex, option.html);
             result_id = option.dom_id;
             result = $("#" + result_id);
-            if (regex.test(option.html || ((option.group_array_index != null) && this.results_data[option.group_array_index].search_match))) {
+            if (this.winnow_search_match(this.regex, option.html) || ((option.group_array_index != null) && this.results_data[option.group_array_index].search_match)) {
               found = true;
               results += 1;
               if (this.searchText.length && found) {

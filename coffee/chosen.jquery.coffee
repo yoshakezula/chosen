@@ -417,12 +417,10 @@ class Chosen extends AbstractChosen
         if option.group
           this.winnow_option_group(option)
         else if not (@is_multiple and option.selected)
-          found = this.winnow_search_match(@regex, option.html)
-          
           result_id = option.dom_id
           result = $("#" + result_id)
-
-          if regex.test option.html or (option.group_array_index? && @results_data[option.group_array_index].search_match)
+          
+          if this.winnow_search_match(@regex, option.html) or (option.group_array_index? && @results_data[option.group_array_index].search_match)
             found = true
             results += 1
             
