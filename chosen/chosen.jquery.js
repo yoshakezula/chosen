@@ -333,7 +333,12 @@ Copyright (c) 2011 by Harvest
         container_div.html('<a href="javascript:void(0)" class="chzn-single chzn-default" tabindex="-1"><span>' + this.default_text + '</span><div><b></b></div></a><div class="chzn-drop" style="left:-9000px;"><div class="chzn-search"><input type="text" autocomplete="off" /></div><ul class="chzn-results"></ul></div>');
       }
       this.form_field_jq.hide().after(container_div);
-      this.container = $('#' + this.container_id);
+      //NOTE: edited so that this.container set to container_div, in case the DOM isn't ready yet 
+      if ($('#' + this.container_id).length == 0) {
+        this.container = container_div;
+      } else {
+        this.container = $('#' + this.container_id);
+      } 
       this.container.addClass("chzn-container-" + (this.is_multiple ? "multi" : "single"));
       this.dropdown = this.container.find('div.chzn-drop').first();
       dd_top = this.container.height();
